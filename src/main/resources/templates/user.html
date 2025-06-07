@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>ユーザー一覧</title>
+</head>
+
+<body>
+	<p><a href="/">戻る</a></p>
+
+	<h1>ユーザー一覧</h1>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>名前</th>
+				<th>メール</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- thはタイムリーフの接頭語 -->
+			<!-- コントローラーでaddObjectした変数が参照できる -->
+			<tr th:each="item : ${items}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.email}"></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</body>
+
+</html>
