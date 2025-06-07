@@ -18,23 +18,24 @@ public class UserController {
 
 	// DBアクセスオブジェクトの生成（おまじない）
 	private final UserDao userDao;
+
 	public UserController(UserDao userDao) {
 		this.userDao = userDao;
 	}
-	
+
 	// ユーザー一覧画面
-	@GetMapping({ "/user"})
+	@GetMapping({ "/user" })
 	public ModelAndView top(Model model) {
 		// DBからデータ取得
 		List<UserData> items = userDao.findAll();
-		
+
 		// Nakaがつく人を探す場合はこうする
-		//List<UserData> items = userDao.findUser("Naka");
+		// List<UserData> items = userDao.findUser("Naka");
 
 		// templates/user.htmlにリンクされる
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("user");
-		
+
 		// HTML側へデータをリンク
 		modelAndView.addObject("items", items);
 		return modelAndView;

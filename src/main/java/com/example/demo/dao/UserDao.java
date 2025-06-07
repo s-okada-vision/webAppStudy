@@ -31,9 +31,9 @@ public class UserDao {
 	// 曖昧検索する場合に使うメソッド
 	public List<UserData> findUser(String name) {
 		String sql = "SELECT * FROM users WHERE name like ?";
-		
+
 		// likeで使いたいので%を追加する
-		String searchStr = "%"+name+"%";
+		String searchStr = "%" + name + "%";
 
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 			UserData item = new UserData();
@@ -41,8 +41,6 @@ public class UserDao {
 			item.setName(rs.getString("name"));
 			item.setEmail(rs.getString("email"));
 			return item;
-		},
-		searchStr
-		);
+		}, searchStr);
 	}
 }

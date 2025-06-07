@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class TopController {
 
 	// トップ画面
-	@GetMapping({ "/"})
+	@GetMapping({ "/" })
 	public String top() {
 		// templates/index.htmlにリンクされる
 		return "index";
