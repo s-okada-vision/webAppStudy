@@ -4,4 +4,3 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE,          -- メールアドレス (一意)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- 作成日時
 );
-
