@@ -18,14 +18,14 @@ public class UserDao {
 	//usersテーブルのデータを取得しUserDataオブジェクトのリストとして返す
 	public List<UserData> findAll() {
 		String sql = "SELECT * FROM users";
-		//SQLを実行して結果を処理する便利なメソッド
-		//第2引数のラムダ式 (rs, rowNum) で一行ずつオブジェクトへ変換
+		//jdbcTemplate.query はSQLを実行し、結果を処理するSpringの便利なメソッド
+		//ラムダ式 (resultSet, rowNum) で一行ずつオブジェクトへ変換する関数型インターフェース
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 			UserData item = new UserData();
-			item.setId(rs.getLong("id")); 
+			item.setId(rs.getLong("id")); //resultSetからidカラム値をlong型で取得しitemにセット
 			item.setName(rs.getString("name"));
 			item.setEmail(rs.getString("email"));
-			return item; //カラム値を取得しUserDataにセット
+			return item; //item値をUserDataに返す
 		});
 	}
 
@@ -36,7 +36,7 @@ public class UserDao {
 
 		// likeで使いたいので%を追加する（%を入れるとnameを含む全ての文字列を検索可能）
 		String searchStr = "%" + name + "%";
-
+		// ラムダ式(rs=ResultSet, rowNum=行番号)でＳＱＬ結果をレスポンス
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 			UserData item = new UserData();
 			item.setId(rs.getLong("id"));

@@ -19,7 +19,7 @@ import org.springframework.ui.Model;
 public class UserController {
 
 	// DBアクセスオブジェクトの生成（おまじない）
-	// データベースアクセス用のオブジェクトを保持
+	// データアクセスオブジェクト（DAO）で、ユーザー情報から取得・保存する役割
 	private final UserDao userDao;
 	// Spring が UserDao を自動で渡してくれる（コンストラクタインジェクション）
 	public UserController(UserDao userDao) {
@@ -39,6 +39,24 @@ public class UserController {
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("user");
+
+		// HTML側へデータをリンク
+		modelAndView.addObject("items", items);
+		return modelAndView;
+	}
+	// user2作成中
+	@GetMapping({ "/user2" }) //アクセスあれば呼び出す
+	public ModelAndView top2(Model mode2) {
+		// DBからデータ取得
+		 List<UserData> items = userDao.findAll();
+
+		 // Nakaがつく人を探す場合はこうする（確認済）
+		// List<UserData> items = userDao.findUser("Naka");
+
+		// templates/user.htmlにリンクされる
+		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("user2");
 
 		// HTML側へデータをリンク
 		modelAndView.addObject("items", items);
