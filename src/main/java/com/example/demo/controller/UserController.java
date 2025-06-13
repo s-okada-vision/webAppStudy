@@ -44,11 +44,11 @@ public class UserController {
 		modelAndView.addObject("items", items);
 		return modelAndView;
 	}
-	// user2作成中
-	@GetMapping({ "/user2" }) //アクセスあれば呼び出す
+/*	// ドラッグストア商品一覧　shop作成中
+	@GetMapping({ "/shop" }) //アクセスあれば呼び出す
 	public ModelAndView top2(Model mode2) {
 		// DBからデータ取得
-		 List<UserData> items = userDao.findAll();
+		 List<ShopData> items = userDao.findAll();
 
 		 // Nakaがつく人を探す場合はこうする（確認済）
 		// List<UserData> items = userDao.findUser("Naka");
@@ -56,10 +56,10 @@ public class UserController {
 		// templates/user.htmlにリンクされる
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("user2");
+		modelAndView.setViewName("shop");
 
 		// HTML側へデータをリンク
 		modelAndView.addObject("items", items);
 		return modelAndView;
-	}
+	} */
 }

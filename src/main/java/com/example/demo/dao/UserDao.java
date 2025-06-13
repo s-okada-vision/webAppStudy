@@ -45,4 +45,17 @@ public class UserDao {
 			return item;
 		}, searchStr); //？に値を返す
 	}
+/*	public List<ShopData> findAll2() {
+		String sql = "SELECT * FROM shop";
+		//jdbcTemplate.query はSQLを実行し、結果を処理するSpringの便利なメソッド
+		//ラムダ式 (resultSet, rowNum) で一行ずつオブジェクトへ変換する関数型インターフェース
+		return jdbcTemplate.query(sql, (rs, rowNum) -> {
+			ShopData item = new ShopData();
+			item.setBarcode(rs.getLong("barcode")); //resultSetからidカラム値をlong型で取得しitemにセット
+			item.setName(rs.getString("name"));
+			item.setCost(rs.getString("cost_price"));
+			item.setSale(rs.getString("sale_price"));
+			return item; //item値をUserDataに返す
+		});
+	} */
 }

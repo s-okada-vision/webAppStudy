@@ -2,29 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>ユーザー一覧</title>
+	<title>ドラッグストア商品一案</title>
 </head>
 
 <body>
 	<p><a href="/">戻る</a></p>
 
-	<h1>ユーザー一覧</h1>
+	<h1>ドラッグストア商品一覧</h1>
 
 	<table border="1">
 		<thead><!--table head 表のヘッダーをまとめる要素、表の最初に置き、見出し行を含む-->
 			<tr><!--table row 表の行-->>
-				<th>ID</th><!--table header cell 表のヘッダーセル＝見出し-->
-				<th>名前</th>
-				<th>メール</th>
+				<th>バーコード</th><!--table header cell 表のヘッダーセル＝見出し-->
+				<th>商品名</th>
+				<th>仕入れ値</th>
+				<th>売値</th>
 			</tr>
 		</thead>
 		<tbody><!--table body 表の本体部分、データ行をまとめる要素＝実際のデータ、theadのあとにおく-->>
 			<!-- thはタイムリーフの接頭語 -->
 			<!-- コントローラーでaddObjectした変数が参照できる -->
 			<tr th:each="item : ${items}"> <!-- each=ループ -->
-				<td th:text="${item.id}"></td> <!--text=出力-->
+				<td th:text="${item.barcode}"></td> <!--text=出力-->
 				<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->>
-				<td th:text="${item.email}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->>
+				<td th:text="${item.cost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->>
+				<td th:text="${item.sale_price}"></td>
 			</tr>
 
 		</tbody>
