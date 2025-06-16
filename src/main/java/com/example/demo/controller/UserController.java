@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 //自作のデータアクセスとデータクラスを使う
 import com.example.demo.dao.UserDao;
 import com.example.demo.data.UserData;
-
+import com.example.demo.data.ShopData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -44,22 +44,22 @@ public class UserController {
 		modelAndView.addObject("items", items);
 		return modelAndView;
 	}
-/*	// ドラッグストア商品一覧　shop作成中
-	@GetMapping({ "/shop" }) //アクセスあれば呼び出す
-	public ModelAndView top2(Model mode2) {
+	// ドラッグストア商品一覧
+	@GetMapping({ "/products" }) //アクセスあれば呼び出す
+	public ModelAndView shop(Model model) {
 		// DBからデータ取得
-		 List<ShopData> items = userDao.findAll();
+		 List<ShopData> items = userDao.findAll2();
 
-		 // Nakaがつく人を探す場合はこうする（確認済）
-		// List<UserData> items = userDao.findUser("Naka");
+		 // くすりがつく人を探す場合
+		//List<ShopData> items = userDao.findProducts("くすり");
 
 		// templates/user.htmlにリンクされる
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("shop");
+		modelAndView.setViewName("products");
 
 		// HTML側へデータをリンク
 		modelAndView.addObject("items", items);
 		return modelAndView;
-	} */
+	}
 }

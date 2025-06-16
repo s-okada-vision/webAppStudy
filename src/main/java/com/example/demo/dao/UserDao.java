@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.data.UserData;
-
+import com.example.demo.data.ShopData;
 @Repository
 public class UserDao {
 
@@ -45,17 +45,35 @@ public class UserDao {
 			return item;
 		}, searchStr); //？に値を返す
 	}
-/*	public List<ShopData> findAll2() {
-		String sql = "SELECT * FROM shop";
-		//jdbcTemplate.query はSQLを実行し、結果を処理するSpringの便利なメソッド
+	
+	public List<ShopData> findAll2() {
+		String sql = "SELECT * FROM products";
+		//jdbcTemplate.query はSQLを実行、結果を処理するSpringの便利なメソッド
 		//ラムダ式 (resultSet, rowNum) で一行ずつオブジェクトへ変換する関数型インターフェース
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 			ShopData item = new ShopData();
-			item.setBarcode(rs.getLong("barcode")); //resultSetからidカラム値をlong型で取得しitemにセット
+			item.setBarcode(rs.getString("barcode")); //resultSetからidカラム値をlong型で取得しitemにセット
 			item.setName(rs.getString("name"));
-			item.setCost(rs.getString("cost_price"));
-			item.setSale(rs.getString("sale_price"));
-			return item; //item値をUserDataに返す
+			item.setCost_price(rs.getBigDecimal("cost_price"));
+			item.setSale_price(rs.getBigDecimal("sale_price"));
+			return item; //item値を返す
 		});
-	} */
+	}
+	
+	public List<ShopData> findProducts(String name) {
+		//?(プレースホルダー)で値を仮置きしトラブル対策
+		String sql = "SELECT * FROM products WHERE name like ?";
+
+		// likeで使いたいので%を追加する（%を入れるとnameを含む全ての文字列を検索可能）
+		String searchStr = "%" + name + "%";
+		// ラムダ式(rs=ResultSet, rowNum=行番号)でＳＱＬ結果をレスポンス
+		return jdbcTemplate.query(sql, (rs, rowNum) -> {
+			ShopData item = new ShopData();
+			item.setBarcode(rs.getString("barcode")); //resultSetからidカラム値をlong型で取得しitemにセット
+			item.setName(rs.getString("name"));
+			item.setCost_price(rs.getBigDecimal("cost_price"));
+			item.setSale_price(rs.getBigDecimal("sale_price"));
+			return item; //item値を返す
+		}, searchStr); //？に値を返す
+	}
 }
