@@ -17,16 +17,18 @@
 				<th>商品名</th>
 				<th>仕入れ値</th>
 				<th>売値</th>
+				<th>粗利益</th>
 			</tr>
 		</thead>
-		<tbody><!--table body 表の本体部分、データ行をまとめる要素＝実際のデータ、theadのあとにおく-->>
+		<tbody><!--table body 表の本体部分、データ行をまとめる要素＝実際のデータ、theadのあとにおく-->
 			<!-- thはタイムリーフの接頭語 -->
 			<!-- コントローラーでaddObjectした変数が参照できる -->
 			<tr th:each="item : ${items}"> <!-- each=ループ -->
 				<td th:text="${item.barcode}"></td> <!--text=出力-->
-				<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->>
-				<td th:text="${item.cost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->>
-				<td th:text="${item.sale_price}"></td>
+				<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->
+				<td th:text="${item.formatCost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->
+				<td th:text="${item.formatSale_price}"></td><!--ShopDataに切り捨て変換追加-->
+				<td th:text="${item.formatGrossProfit}"></td><!--粗利益のカラムをjavaで受け取り表示-->
 			</tr>
 
 		</tbody>

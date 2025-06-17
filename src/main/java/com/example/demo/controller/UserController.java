@@ -1,4 +1,6 @@
 package com.example.demo.controller;
+// BigDecimal型を扱う
+import java.math.BigDecimal;
 //Java の リスト型（順序付きのコレクション） を使う
 import java.util.List;
 /* Spring Boot のWeb機能を使うためのインポート
@@ -49,10 +51,19 @@ public class UserController {
 	public ModelAndView shop(Model model) {
 		// DBからデータ取得
 		 List<ShopData> items = userDao.findAll2();
+		 /*「くすり」がつくものを探す機能
+		List<ShopData> items = userDao.findProducts("くすり");*/
 
-		 // くすりがつく人を探す場合
-		//List<ShopData> items = userDao.findProducts("くすり");
-
+		// 粗利益を計算する
+		for (int i=0; i < items.size(); i++) {//size=Listの要素数を取得する
+			ShopData item = items.get(i);
+			if(item.getSale_price() != null && item.getCost_price() != null) {//データが入っている場合
+				BigDecimal grossProfit = item.getSale_price().subtract(item.getCost_price());//subtact=減算機能
+				item.setGrossProfit(grossProfit);
+			}
+		}
+		 
+		
 		// templates/htmlにリンクされる
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
