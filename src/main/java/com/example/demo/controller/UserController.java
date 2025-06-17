@@ -48,12 +48,19 @@ public class UserController {
 	}
 	// ドラッグストア商品一覧
 	@GetMapping({ "/products" }) //アクセスあれば呼び出す
-	public ModelAndView shop(Model model) {
-		// DBからデータ取得
+	public ModelAndView shop(Model model, String keyword){
+		// DBからデータ全件取得
 		 List<ShopData> items = userDao.findAll2();
+		 
 		 /*「くすり」がつくものを探す機能
 		List<ShopData> items = userDao.findProducts("くすり");*/
-
+		 
+		// 検索する場合
+		if (keyword != null && !keyword.isEmpty()) {
+			items = userDao.findProducts(keyword);//検索
+		} else {
+			items = userDao.findAll2();
+		}
 		// 粗利益を計算する
 		for (int i=0; i < items.size(); i++) {//size=Listの要素数を取得する
 			ShopData item = items.get(i);
@@ -62,15 +69,14 @@ public class UserController {
 				item.setGrossProfit(grossProfit);
 			}
 		}
-		 
-		
 		// templates/htmlにリンクされる
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("products");
 
 		// HTML側へデータをリンク
-		modelAndView.addObject("items", items);
+		modelAndView.addObject("items", items);//全検索した一覧を返す
+		modelAndView.addObject("keyword", keyword);//何を検索したかのワードを返す
 		return modelAndView;
 	}
 }
