@@ -47,7 +47,7 @@ public class UserDao {
 	}
 	
 	public List<ShopData> findAll2() {
-		String sql = "SELECT * FROM products";
+		String sql = "SELECT * FROM webdbproducts";
 		//jdbcTemplate.query はSQLを実行、結果を処理するSpringの便利なメソッド
 		//ラムダ式 (resultSet, rowNum) で一行ずつオブジェクトへ変換する関数型インターフェース
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
@@ -62,7 +62,7 @@ public class UserDao {
 	
 	public List<ShopData> findProducts(String name) {
 		//?(プレースホルダー)で値を仮置きしトラブル対策
-		String sql = "SELECT * FROM products WHERE name like ?";
+		String sql = "SELECT * FROM webdbproducts WHERE name like ?";
 
 		// likeで使いたいので%を追加する（%を入れるとnameを含む全ての文字列を検索可能）
 		String searchStr = "%" + name + "%";

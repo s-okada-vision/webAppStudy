@@ -53,7 +53,7 @@ public class UserController {
 		 // くすりがつく人を探す場合
 		//List<ShopData> items = userDao.findProducts("くすり");
 
-		// templates/user.htmlにリンクされる
+		// templates/htmlにリンクされる
 		// どの画面（View）を表示するか、どんなデータを渡すか、をまとめて返すクラス
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("products");
