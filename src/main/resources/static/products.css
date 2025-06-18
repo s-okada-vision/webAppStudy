@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'pokemon';
+	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype');
+}
+/*メッセージの枠組み*/
+.message-window {
+	font-family: 'pokemon', sans-serif;
+	font-size: 15px;
+	text-align: center; /*中央揃え*/
+	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化する背景*/
+	border:2px solid rgb(5, 230, 160); /*枠*/
+	border-left: 10px solid rgb(5, 230, 160);
+	border-right: 10px solid  rgb(5, 230, 160);
+	box-shadow:2px 2px 2px 2px rgb(128, 128, 128);
+	border-radius: 5px;
+	width: 80%;
+	max-width: 350px;
+}
+
+.title {
+	font-family: fantasy;
+}
