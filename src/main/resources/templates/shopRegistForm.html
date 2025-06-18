@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>一覧</title>
+</head>
+
+<body>
+	<p><a href="/products">戻る</a></p>
+
+	<h1>登録フォーム</h1>
+	<form action="/shop/regist" method="post">
+		<label for="barcode">管理番号：</label><br>
+		<input type="text" id="barccode" name="barcode" required><br><br>
+		<label for="name">名前:</label><br>
+		<input type="text" id="name" name="name" required><br><br>
+		<label for="cost_price">仕入れ値:</label><br>
+		<input type="cost_price" id="cost_price" name="cost_price" required><br><br>
+		<label for="sale_price">売値:</label><br>
+		<input type="sale_price" id="sale_price" name="sale_price" required><br><br>
+		<input type="submit" value="登録">
+	</form>
+
+</body>
+
+</html>

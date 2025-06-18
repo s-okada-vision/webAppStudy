@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,  -- ユーザーID (主キー)
     name VARCHAR(100) NOT NULL,         -- 名前 (100文字まで)

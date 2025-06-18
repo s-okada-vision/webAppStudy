@@ -1,22 +1,67 @@
 @font-face {
-	font-family: 'pokemon';
-	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype');
+	font-family: 'pokedrug';/*フォント名定義*/
+	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype'); /*フォントのリンク*/
 }
+
+/*ページの背景*/
+body {
+    background-image: url('/images/backGround.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/*ショップ名*/
+.shopName {
+	width: 400px;
+	height: auto;
+	border-radius: 20px;
+}
+
 /*メッセージの枠組み*/
 .message-window {
-	font-family: 'pokemon', sans-serif;
+	font-family: 'pokedrug', sans-serif;
 	font-size: 15px;
 	text-align: center; /*中央揃え*/
 	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化する背景*/
 	border:2px solid rgb(5, 230, 160); /*枠*/
 	border-left: 10px solid rgb(5, 230, 160);
 	border-right: 10px solid  rgb(5, 230, 160);
-	box-shadow:2px 2px 2px 2px rgb(128, 128, 128);
-	border-radius: 5px;
-	width: 80%;
+	box-shadow:2px 2px 2px 2px gray; /*枠に影*/
+	border-radius: 20px; /*角を丸く*/
+	width: 80%; /*横*/
 	max-width: 350px;
 }
-
+/*タイトル文字*/
 .title {
-	font-family: fantasy;
+	font-size: 30px;
+	
 }
+/*タイトルのアイコン画像*/
+.shopIcon {
+	width: 80px;
+	border-radius: 100px;
+	position: relative; top: 30px;
+}
+
+.page {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: ;
+}
+.table {
+	width: auto;
+	border-collapse: collapse;
+}
+tr:nth-child(even){
+	background-color: rgb(255, 230, 181); /* 白色で70%不透明 */
+}
+tr:nth-child(odd){
+	background-color: rgb(255, 197, 168);
+}
+
+.search-form {
+	width: 50%;
+}
+
