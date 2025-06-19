@@ -48,11 +48,12 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: ;
+	padding: 10px;
 }
 .table {
 	width: auto;
 	border-collapse: collapse;
+	position: relative; 
 }
 tr:nth-child(even){
 	background-color: rgb(255, 230, 181); /* 白色で70%不透明 */

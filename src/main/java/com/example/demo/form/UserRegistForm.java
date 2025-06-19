@@ -1,5 +1,5 @@
 package com.example.demo.form;
-
+//ユーザー情報をデータベースに登録するメソッド
 public class UserRegistForm {
 
 	private String name;

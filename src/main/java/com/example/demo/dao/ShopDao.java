@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.data.ShopData;
 import com.example.demo.form.ShopRegistForm;
 
-@Repository
+@Repository //DB接続を自動管理してくれる
 public class ShopDao {
 
 	private final JdbcTemplate jdbcTemplate;
@@ -15,7 +15,7 @@ public class ShopDao {
 	public ShopDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+	//全件取得
 	public List<ShopData> findAll() {
 		String sql = "SELECT * FROM webdbproducts";
 		//jdbcTemplate.query はSQLを実行、結果を処理するSpringの便利なメソッド
@@ -29,7 +29,7 @@ public class ShopDao {
 			return item; //item値を返す
 		});
 	}
-	
+	//入力値と一致するものを検索
 	public List<ShopData> findProducts(String name) {
 		//?(プレースホルダー)で値を仮置きしトラブル対策
 		String sql = "SELECT * FROM webdbproducts WHERE name like ?";
@@ -48,9 +48,10 @@ public class ShopDao {
 	}
 
 	// 新規登録メソッド
-	public void insert(ShopRegistForm form) {
-		String sql = "INSERT INTO shop (barcode, name, cost_price, sale_price) VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, form.getBarcode(), form.getName(), form.getCost_price(), form.getSale_price());
+	public void insert(ShopRegistForm form) { //insert（）関数で~formで入力された値を追加する
+		String sql = "INSERT INTO webdbproducts (barcode, name, cost_price, sale_price) VALUES (?, ?, ?, ?)"; //?で値を仮置き
+		jdbcTemplate.update(sql, form.getBarcode(), form.getName(), form.getCostPrice(), form.getSalePrice());
+		//updateで更新するSQL、結果を処理するjdbcTemplate
 		
 		// 本当はエラー発生時に例外をキャッチしてエラーページに飛ばすが一旦やらない
 	}

@@ -46,7 +46,7 @@ public class UserDao {
 		}, searchStr); //？に値を返す
 	}
 	// 新規登録メソッド
-	public void insert(UserRegistForm form) {
+	public void insert(UserRegistForm form) { //ユーザー情報を追加
 		String sql = "INSERT INTO users (name, email) VALUES (?, ?)";
 		jdbcTemplate.update(sql, form.getName(), form.getEmail());
 		

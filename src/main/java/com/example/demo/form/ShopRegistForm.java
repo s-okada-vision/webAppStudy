@@ -1,13 +1,13 @@
 package com.example.demo.form;
 
 import java.math.BigDecimal;
-
+//情報をデータベースに登録するメソッド
 public class ShopRegistForm {
 
 	private String barcode;
 	private String name;
-	private BigDecimal cost_price;
-	private BigDecimal sale_price;
+	private BigDecimal costPrice;
+	private BigDecimal salePrice;
 	
 	public String getBarcode() {
 		return barcode;
@@ -25,19 +25,19 @@ public class ShopRegistForm {
 		this.name = name;
 	}
 	
-	public BigDecimal getCost_price() {
-		return cost_price;
+	public BigDecimal getCostPrice() {
+		return costPrice;
 	}
 	
-	public void setCost_price(BigDecimal cost_price) {
-		this.cost_price = cost_price;
+	public void setCostPrice(BigDecimal cost_price) {
+		this.costPrice = cost_price;
 	}
 	
-	public BigDecimal getSale_price() {
-		return sale_price;
+	public BigDecimal getSalePrice() {
+		return salePrice;
 	}
 	
-	public void setSale_price(BigDecimal sale_price) {
-		this.sale_price = sale_price;
+	public void setSalePrice(BigDecimal sale_price) {
+		this.salePrice = sale_price;
 	}
 }

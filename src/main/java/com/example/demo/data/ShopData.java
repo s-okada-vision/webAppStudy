@@ -2,7 +2,7 @@ package com.example.demo.data;
 
 import java.math.BigDecimal;
 
-// DBのユーザー情報を保持しコントローラーと受け渡しをする
+// DB情報を保持しコントローラーと受け渡しをする
 public class ShopData {
 
 	private String barcode;

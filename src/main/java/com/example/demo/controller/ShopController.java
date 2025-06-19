@@ -83,8 +83,9 @@ public class ShopController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		// 登録が成功したので一覧画面にリダイレクトする
-		modelAndView.setViewName("redirect:/shop");
+		modelAndView.setViewName("redirect:/products");
 		return modelAndView;
+		
 	}
 
 }
