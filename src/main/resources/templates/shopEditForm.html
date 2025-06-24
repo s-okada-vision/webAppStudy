@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>一覧</title>
+</head>
+
+<body>
+	<p><a href="/products">戻る</a></p>
+
+	<h1>編集フォーム</h1>
+	<form th:action="@{/shop/update}" th:object="${shopEditForm}" method="post">
+		<label for="barcode">管理番号：</label><br>
+	    <input type="text" th:field="*{barcode}" required><br><br>
+		<label for="name">名前:</label><br>
+	    <input type="text" th:field="*{name}" required><br><br>
+		<label for="cost_price">仕入れ値:</label><br>
+	    <input type="number" th:field="*{cost_price}" required><br><br>
+		<label for="sale_price">売値:</label><br>
+	    <input type="number" th:field="*{sale_price}" required><br><br>
+	    <input type="submit" value="更新">
+	</form>
+
+</body>
+
+</html>
