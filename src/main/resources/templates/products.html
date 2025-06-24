@@ -1,65 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
 	<title>ドラッグストア</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" th:href="@{/products.css}">
-	<!--<img src='/image/backGround.png' class='backGround'-->
+	<img src='/image/backGround.png'>
 </head>
-
 <body>
-	<a href="/">戻る</a>
-	<a>　　　</a>
-	<a href="/shop/registForm">新規</a>
-	<p></p>
-	<img src="/images/shopName.png" alt="ドラッグストアまんまる" class='shopName'>
-	<p></p>
-	
-	<!--ここに店員のイメージを置きたい-->
-	
-	<div class="message-window">
-		<p>いらっしゃいませ！　なにを　おさがしですか？</p>
-	</div>	
-	<div class="page">
-		<div class="title">
-			<p>ドラッグストア商品一覧
-			<img src="/images/shopIcon.png" alt="店内アイコン" class='shopIcon'>
-			</p>
+		<!--サブメニュー-->
+		<div class="submenu">
+			<p><a href="/">戻る</a><p>
+			<p><a href="/shop/registForm">新規登録</a><p>
 		</div>
-	 
-	  <div class="table">
-	  <table border="1">
-		<thead><!--table head 表のヘッダーをまとめる要素、表の最初に置き、見出し行を含む-->
-			<tr><!--table row 表の行-->
-				<th>管理番号</th><!--table header cell 表のヘッダーセル＝見出し-->
-				<th>商品名</th>
-				<th>仕入れ値</th>
-				<th>売値</th>
-				<th>粗利益</th>
-			</tr>
-		</thead>
-		<tbody><!--table body 表の本体部分、データ行をまとめる要素＝実際のデータ、theadのあとにおく-->
+		<!--ショップ-->
+		<img src="/images/shopName.png" alt="ドラッグストアまんまる" class='shopName'>
+		<div class="List">
+		<p>ドラッグストア商品一覧</p>
+		</div>
+		<div class="message-window">
+			<p>いらっしゃいませ！　なにを　おさがしですか？</p>
+		</div>	
+		<div class="character">
+			<p><img src="/images/shopIcon.png" alt="店内アイコン" class='shopIcon'></p>
+		
+		<!--検索フォーム-->
+		<div class="search-form">
+			<form th:action="@{/products}" method="get">
+			<input type="text" name="keyword" th:value="${keyword}" placeholder="商品を検索"
+				style="width: 300px; height: 30px; font-size: 16px;">
+			<input type="submit" value="検索"
+				style="width: 100px; height: 34px; font-size: 16px">
+			</form>
+		</div>
+		<div class="table">
+			<table border="1">
+			<thead><!--table head 表のヘッダーをまとめる要素、表の最初に置き、見出し行を含む-->
+				<tr><!--table row 表の行-->
+					<th>管理番号</th><!--table header cell 表のヘッダーセル＝見出し-->
+					<th>商品名</th>
+					<th>仕入れ値</th>
+					<th>売値</th>
+					<th>粗利益</th>
+				</tr>
+			</thead>
+			<tbody><!--table body 表の本体部分、データ行をまとめる要素＝実際のデータ、theadのあとにおく-->
 			<!-- thはタイムリーフの接頭語 -->
 			<!-- コントローラーでaddObjectした変数が参照できる -->
-			<tr th:each="item : ${items}"> <!-- each=ループ -->
-				<td><a th:href="@{/shop/editForm(barcode=${item.barcode})}" th:text="${item.barcode}"></a></td>
-				<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->
-				<td th:text="${item.formatCost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->
-				<td th:text="${item.formatSale_price}"></td><!--ShopDataに切り捨て変換追加-->
-				<td th:text="${item.formatGrossProfit}"></td><!--粗利益のカラムをjavaで受け取り表示-->
-			</tr>
-		</tbody>
-	  </table>
-	  </div>
-	  <!--検索フォームの追加-->
-	  	<form th:action="@{/products}" method="get">
-	  		<input type="text" name="keyword" th:value="${keyword}" placeholder="商品を検索"
-	  			style="width: 300px; height: 30px; font-size: 16px;">
-	  		<input type="submit" value="検索"
-	  			style="width: 100px; height: 34px; font-size: 16px">
-	  	</form>
-	 </div>
+				<tr th:each="item : ${items}"> <!-- each=ループ -->
+					<td><a th:href="@{/shop/editForm(barcode=${item.barcode})}" th:text="${item.barcode}"></a></td>
+					<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->
+					<td th:text="${item.formatCost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->
+					<td th:text="${item.formatSale_price}"></td><!--ShopDataに切り捨て変換追加-->
+					<td th:text="${item.formatGrossProfit}"></td><!--粗利益のカラムをjavaで受け取り表示-->
+				</tr>
+			</tbody>
+	 	 	</table>
+	 	</div>
 </body>
-
 </html>

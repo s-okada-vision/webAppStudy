@@ -8,61 +8,72 @@ body {
     background-image: url('/images/backGround.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
+	
+}
+.submenu {
+	font-size: 40px;
+	position: relative; top: 1000px;
 }
 
 /*ショップ名*/
 .shopName {
-	width: 400px;
+	width: 600px;
 	height: auto;
 	border-radius: 20px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: 500px;
+}
+
+.List{
+	font-size: 50px;
+	font-family: serif;
+	position: relative; top: 700px;
+}
+
+/*タイトルのアイコン画像*/
+.shopIcon {
+	width: 450px;
+	border-radius: 30px;
+	position: relative; top: 500px; left: 200px;
 }
 
 /*メッセージの枠組み*/
 .message-window {
 	font-family: 'pokedrug', sans-serif;
-	font-size: 15px;
-	text-align: center; /*中央揃え*/
+	font-size: 30px;
+	text-align: center; /*文字中央揃え*/
 	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化する背景*/
 	border:2px solid rgb(5, 230, 160); /*枠*/
 	border-left: 10px solid rgb(5, 230, 160);
 	border-right: 10px solid  rgb(5, 230, 160);
-	box-shadow:2px 2px 2px 2px gray; /*枠に影*/
+	box-shadow:2px gray; /*枠に影*/
 	border-radius: 20px; /*角を丸く*/
-	width: 80%; /*横*/
-	max-width: 350px;
+	width: 800px; /*横*/
+	max-width: 800px;
+	margin-bottom: 300px;
+	position: relative; top: 1300px; left: 100px;
 }
-/*タイトル文字*/
-.title {
-	font-size: 30px;
-	
-}
-/*タイトルのアイコン画像*/
-.shopIcon {
-	width: 80px;
-	border-radius: 100px;
-	position: relative; top: 30px;
-}
-
-.page {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding: 10px;
-}
+/*テーブル*/
 .table {
-	width: auto;
-	border-collapse: collapse;
-	position: relative; 
+	margin-left: auto; /*右寄せ*/
+	width: fit-content; /*幅自動調整*/
+	border: 1px solid #ccc;
 }
+/*表の偶数、奇数のカラー*/
 tr:nth-child(even){
 	background-color: rgb(255, 230, 181); /* 白色で70%不透明 */
 }
 tr:nth-child(odd){
 	background-color: rgb(255, 197, 168);
 }
-
+/*検索フォーム*/
 .search-form {
-	width: 50%;
+	text-align: right;
+	padding-top: 0;
+	margin-top: 0;
 }
 
