@@ -9,10 +9,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 //自作のデータアクセスとデータクラスを使う
 import com.example.demo.dao.ShopDao;
 import com.example.demo.data.ShopData;
+import com.example.demo.form.ShopEditForm;
 //入力登録フォーム
 import com.example.demo.form.ShopRegistForm;
 import org.springframework.stereotype.Controller;
@@ -65,7 +67,7 @@ public class ShopController {
 		return modelAndView;
 	}
 
-	//登録画面
+	// 新規登録画面の取得
 	@GetMapping({ "/shop/registForm" })
 	public ModelAndView registForm(Model model) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -73,11 +75,11 @@ public class ShopController {
 		return modelAndView;
 	}
 
-	// ユーザー登録
+	// 新規登録
 	@PostMapping({ "/shop/regist" })
 	public ModelAndView regist(@ModelAttribute ShopRegistForm form, Model model) {
 		// @ModelAttributeを使うと、フォームの名前とクラスのメンバ変数名を自動的にマッピングしてくれる
-		
+
 		// データ登録（本当は入力チェックとかが必要だが、今はやらない）
 		ShopDao.insert(form);
 
@@ -85,7 +87,28 @@ public class ShopController {
 		// 登録が成功したので一覧画面にリダイレクトする
 		modelAndView.setViewName("redirect:/products");
 		return modelAndView;
-		
 	}
 
+	// 編集画面の取得
+	@GetMapping({ "/shop/editForm" })
+	public ModelAndView editForm(@RequestParam String barcode) {
+		ShopData item = ShopDao.findBarcode(barcode); //barcodeで商品情報を取得
+		ModelAndView modelAndView = new ModelAndView("shopEditForm"); //編集リンクに渡し、商品情報を渡す
+		modelAndView.addObject("shopEditForm", item);
+		return modelAndView;
+	}
+
+	// 更新登録
+	@PostMapping({"/shop/update" })
+	public ModelAndView update(@ModelAttribute ShopEditForm form, Model model) {
+		// @ModelAttributeを使うと、フォームの名前とクラスのメンバ変数名を自動的にマッピングしてくれる
+
+		// データ登録（本当は入力チェックとかが必要だが、今はやらない）
+		ShopDao.update(form);
+
+		ModelAndView modelAndView = new ModelAndView();
+		// 登録が成功したので一覧画面にリダイレクトする
+		modelAndView.setViewName("redirect:/products");
+		return modelAndView;
+	}
 }

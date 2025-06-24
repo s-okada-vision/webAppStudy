@@ -43,22 +43,22 @@
 			<!-- thはタイムリーフの接頭語 -->
 			<!-- コントローラーでaddObjectした変数が参照できる -->
 			<tr th:each="item : ${items}"> <!-- each=ループ -->
-				<td th:text="${item.barcode}"></td> <!--text=出力-->
+				<td><a th:href="@{/shop/editForm(barcode=${item.barcode})}" th:text="${item.barcode}"></a></td>
 				<td th:text="${item.name}"></td><!--table data cell 表のデータ通常セル、実際のデータ-->
 				<td th:text="${item.formatCost_price}"></td><!--tdタグにはimg画像、aリンク、ulリスト等も入れられる-->
 				<td th:text="${item.formatSale_price}"></td><!--ShopDataに切り捨て変換追加-->
 				<td th:text="${item.formatGrossProfit}"></td><!--粗利益のカラムをjavaで受け取り表示-->
 			</tr>
-			<!--検索フォームの追加-->
-			<form th:action="@{/products}" method="get">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="商品を検索"
-						style="width: 300px; height: 30px; font-size: 16px;">
-				<input type="submit" value="検索"
-						style="width: 100px; height: 34px; font-size: 16px">
-			</form>
 		</tbody>
 	  </table>
 	  </div>
+	  <!--検索フォームの追加-->
+	  	<form th:action="@{/products}" method="get">
+	  		<input type="text" name="keyword" th:value="${keyword}" placeholder="商品を検索"
+	  			style="width: 300px; height: 30px; font-size: 16px;">
+	  		<input type="submit" value="検索"
+	  			style="width: 100px; height: 34px; font-size: 16px">
+	  	</form>
 	 </div>
 </body>
 
