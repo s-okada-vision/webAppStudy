@@ -93,8 +93,15 @@ public class ShopController {
 	@GetMapping({ "/shop/editForm" })
 	public ModelAndView editForm(@RequestParam String barcode) {
 		ShopData item = ShopDao.findBarcode(barcode); //barcodeで商品情報を取得
+		//マッピング時、フィールド名の差を吸収、shopEditFormに詰め替える
+		ShopEditForm form =new ShopEditForm();
+		form.setBarcode(item.getBarcode());
+		form.setName(item.getName());
+		form.setCostPrice(item.getCost_price());
+		form.setSalePrice(item.getSale_price());
+		
 		ModelAndView modelAndView = new ModelAndView("shopEditForm"); //編集リンクに渡し、商品情報を渡す
-		modelAndView.addObject("shopEditForm", item);
+		modelAndView.addObject("shopEditForm", form);
 		return modelAndView;
 	}
 

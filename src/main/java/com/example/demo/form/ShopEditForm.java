@@ -1,7 +1,7 @@
 package com.example.demo.form;
 
 import java.math.BigDecimal;
-//情報をデータベースに登録するメソッド
+//情報をデータベースに更新するメソッド
 public class ShopEditForm {
 
 	private String barcode;
