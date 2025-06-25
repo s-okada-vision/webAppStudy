@@ -35,10 +35,9 @@ body {
 }
 
 /*タイトルのアイコン画像*/
-.shopIcon {
-	width: 450px;
-	border-radius: 30px;
-	position: relative; top: 500px; left: 200px;
+.character {
+	width: auto;
+	position: relative; top: 200px; left: 300px;
 }
 
 /*メッセージの枠組み*/
@@ -65,7 +64,7 @@ body {
 }
 /*表の偶数、奇数のカラー*/
 tr:nth-child(even){
-	background-color: rgb(255, 230, 181); /* 白色で70%不透明 */
+	background-color: rgb(255, 230, 181);
 }
 tr:nth-child(odd){
 	background-color: rgb(255, 197, 168);

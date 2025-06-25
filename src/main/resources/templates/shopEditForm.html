@@ -6,21 +6,20 @@
 </head>
 
 <body>
-	<p><a href="/products">戻る</a></p>
-
+	<p><a href="/products">戻る</a></p>　<!--onlclick="return confirm('メッセージ');"で再確認させる-->
+	<p><a th:href="@{'/shop/delete?barcode='+${shopEditForm.barcode}}" onclick="return confirm('本当に削除しますか？');">削除</a></p>
 	<h1>編集フォーム</h1>
 	<form th:action="@{/shop/update}" th:object="${shopEditForm}" method="post">
-		<label for="barcode">管理番号：</label><br>
-	    <input type="text" th:field="*{barcode}" required><br><br>
+		<label for="barcode">管理番号：（変更不可）</label><br>
+	    <input type="text" th:field="*{barcode}" readonly><br><br> <!--readonly=表示のみで編集不可-->
 		<label for="name">名前:</label><br>
-	    <input type="text" th:field="*{name}" required><br><br>
-		<label for="cost_price">仕入れ値:</label><br>
+	    <input type="text" th:field="*{name}" required><br><br> <!--required=入力チェック、空欄不可-->
+		<label for="cost_price">仕入れ値:</label><br> 
 	    <input type="number" th:field="*{costPrice}" required><br><br>
 		<label for="sale_price">売値:</label><br>
 	    <input type="number" th:field="*{salePrice}" required><br><br>
-	    <input type="submit" value="更新">
+	    <input type="submit" value="変更">
 	</form>
-
 </body>
 
 </html>

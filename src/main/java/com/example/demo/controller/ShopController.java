@@ -78,11 +78,9 @@ public class ShopController {
 	// 新規登録
 	@PostMapping({ "/shop/regist" })
 	public ModelAndView regist(@ModelAttribute ShopRegistForm form, Model model) {
-		// @ModelAttributeを使うと、フォームの名前とクラスのメンバ変数名を自動的にマッピングしてくれる
-
+		// ModelAttribute=フォームの名前とクラスのメンバ変数名を自動的にマッピングしてくれる
 		// データ登録（本当は入力チェックとかが必要だが、今はやらない）
 		ShopDao.insert(form);
-
 		ModelAndView modelAndView = new ModelAndView();
 		// 登録が成功したので一覧画面にリダイレクトする
 		modelAndView.setViewName("redirect:/products");
@@ -91,7 +89,7 @@ public class ShopController {
 
 	// 編集画面の取得
 	@GetMapping({ "/shop/editForm" })
-	public ModelAndView editForm(@RequestParam String barcode) {
+	public ModelAndView editForm(@RequestParam String barcode) { //RequestParam=URLにクエリパラメータを引数として取得
 		ShopData item = ShopDao.findBarcode(barcode); //barcodeで商品情報を取得
 		//マッピング時、フィールド名の差を吸収、shopEditFormに詰め替える
 		ShopEditForm form =new ShopEditForm();
@@ -113,9 +111,15 @@ public class ShopController {
 		// データ登録（本当は入力チェックとかが必要だが、今はやらない）
 		ShopDao.update(form);
 
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView ModelAndView = new ModelAndView();
 		// 登録が成功したので一覧画面にリダイレクトする
-		modelAndView.setViewName("redirect:/products");
-		return modelAndView;
+		ModelAndView.setViewName("redirect:/products");
+		return ModelAndView;
+	}
+	//　削除機能
+	@GetMapping("/shop/delete")
+	public ModelAndView delete(@RequestParam String barcode) {
+		ShopDao.delete(barcode); //ShopDaoの削除を呼び出す
+		return new ModelAndView("redirect:/products");
 	}
 }

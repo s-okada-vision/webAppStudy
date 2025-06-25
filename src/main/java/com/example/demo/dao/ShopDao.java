@@ -68,11 +68,15 @@ public class ShopDao {
 			return item; //item値を返す )
 		}, barcode);
 	}
-	//編集登録
+	// 編集登録
 	public void update(ShopEditForm form) { //insert（）関数で~formで入力された値を追加する
 		String sql = "UPDATE webdbproducts SET barcode = ?, name = ?, cost_price = ?, sale_price = ? WHERE barcode = ?"; //?で値を仮置き
 		jdbcTemplate.update(sql, form.getBarcode(), form.getName(), form.getCostPrice(), form.getSalePrice(), form.getBarcode());
-		//updateで更新するSQL、結果を処理するjdbcTemplate
+		//DBを処理するjdbcTemplate、updateメソッドは追加、更新、削除が可能
 	}
-
+	// 削除機能
+	public void delete(String barcode) { //指定したbarcodeのレコードを削除する
+		String sql = "DELETE FROM webdbproducts WHERE barcode = ?";
+		jdbcTemplate.update(sql, barcode);
+	}
 }
