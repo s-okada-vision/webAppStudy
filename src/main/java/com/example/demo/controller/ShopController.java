@@ -91,7 +91,7 @@ public class ShopController {
 	@GetMapping({ "/shop/editForm" })
 	public ModelAndView editForm(@RequestParam String barcode) { //RequestParam=URLにクエリパラメータを引数として取得
 		ShopData item = ShopDao.findBarcode(barcode); //barcodeで商品情報を取得
-		//マッピング時、フィールド名の差を吸収、shopEditFormに詰め替える
+		//データベースの項目名や型がそのまま画面と一致しない可能性があるので、ここで整形・マッピング
 		ShopEditForm form =new ShopEditForm();
 		form.setBarcode(item.getBarcode());
 		form.setName(item.getName());

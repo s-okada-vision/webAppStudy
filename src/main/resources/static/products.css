@@ -1,31 +1,53 @@
+/*メモ
+外枠：margin
+中枠:border
+中枠：padding
+要素：画像や文字
+
+*/
+
+/*フォント定義*/
 @font-face {
-	font-family: 'pokedrug';/*フォント名定義*/
-	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype'); /*フォントのリンク*/
+	font-family: 'pokedrug'; /*フォント名*/
+	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype'); /*フォントデータのリンク*/
 }
 
 /*ページの背景*/
 body {
-    background-image: url('/images/backGround.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-	
+    background-image: url('/images/backGround.png'); /*画像リンク*/
+    background-size: 100%; /*画面の幅に合わせる*/
+    background-repeat: no-repeat; /*背景の繰り返しを防ぐ*/
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .submenu {
-	font-size: 40px;
-	position: relative; top: 1000px;
+	width: 150px; /*paddingの内側にある要素の横幅*/
+	height: 100px; /*要素の高さ*/
+	background-color: brown;
+	font-size: 30px;
+	margin-left: 50px; /*要素の位置変更*/
+	margin-top: 300px;
 }
 
 /*ショップ名*/
 .shopName {
-	width: 600px;
+	width: 35%;
 	height: auto;
-	border-radius: 20px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	top: 500px;
+	margin-left: 400px;
+	
+/*	display: flex; 以下の子要素を配置するモード*/
+/*	justify-content: center;  横方向-中央揃え */
+/*	align-items: flex-start;*/
+/*	height： 100px;            画面の高さに合わせる */
+/*	padding-bottom: 50%;*/
+/*	max-width: 40%;*/
+
+	
+
+
 }
 
 .List{
@@ -37,7 +59,7 @@ body {
 /*タイトルのアイコン画像*/
 .character {
 	width: auto;
-	position: relative; top: 200px; left: 300px;
+/*	position: relative; top: 200px; left: 100px;*/
 }
 
 /*メッセージの枠組み*/
