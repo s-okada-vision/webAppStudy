@@ -11,79 +11,111 @@
 	font-family: 'pokedrug'; /*フォント名*/
 	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype'); /*フォントデータのリンク*/
 }
+/*ブラウザのビューポート（表示領域）全体の指定、body子要素が高さを継承できる*/
+html, body {
+  height: 100%; /*ページ全体の高さ*/
+  margin: 0; /*ブラウザのデフォルトbodyは余白マージン8pxがあるためリセットして余白をなくす*/
+}
 
 /*ページの背景*/
 body {
+	position: relative;
     background-image: url('/images/backGround.png'); /*画像リンク*/
-    background-size: 100%; /*画面の幅に合わせる*/
-    background-repeat: no-repeat; /*背景の繰り返しを防ぐ*/
+    background-size: 100%; /*画面の幅に合わせて自動で拡大縮小*/
+    background-repeat: no-repeat; /*背景の繰り返し表示を防ぐ*/
+	margin: 0; /*デフォルトの余白をなくす*/
+	height: 100%; /*画面の高さに合わせてbody全体を伸ばす*/
+	
 }
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.submenu {
-	width: 150px; /*paddingの内側にある要素の横幅*/
-	height: 100px; /*要素の高さ*/
-	background-color: brown;
-	font-size: 30px;
-	margin-left: 50px; /*要素の位置変更*/
-	margin-top: 300px;
-}
-
 /*ショップ名*/
 .shopName {
-	width: 35%;
-	height: auto;
-	margin-left: 400px;
-	
-/*	display: flex; 以下の子要素を配置するモード*/
-/*	justify-content: center;  横方向-中央揃え */
-/*	align-items: flex-start;*/
-/*	height： 100px;            画面の高さに合わせる */
-/*	padding-bottom: 50%;*/
-/*	max-width: 40%;*/
+	display: block; /*Flexbox＝要素を並べるレイアウト機能を有効化（子要素を揃える）*/
+	margin: 1vh auto 0 15vw; /*上、右、下、左*/
+	width: 30%;
+	border-radius: 15px;/*角を丸くする*/
+	/*ネタ*/
+	padding:0 !important;
+	animation: bound .3s ease infinite alternate; /*バウンド*/
+	box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.8); /*影をつける：X軸 Y軸 ぼかし距離 rgba(0,0,0,透明度)*/
+	}
+	@keyframes bound{
+		0%		{transform: translateY(0px);}
+		100%	{transform: translateY(-3px);}/*ここの数値を変えるとバウンド速度が変わる*/
+	}
 
+/*サブメニュー共通（戻る、新規登録）*/
+.subMenu {
+	display: flex; /*Flexbox＝要素を並べるレイアウト機能を有効化（子要素を揃える）*/
+	flex-direction: column;/*並べる方向。row（横）もしくはcolumn（縦）に並べる（子要素）*/
+	gap: 10vh; /*要素同士の間にすき間をつくる*/
+	/*align-items: right;*//*交差軸の揃え方。デフォルト縦方向（columnで縦に指定されている場合、横方向になる）、中央揃え（子要素）*/
+	margin-left: 5vw; /*要素の移動,左から右へ*/
+	margin-top: 5vh;/*上から下へ*/
 	
-
+}
+.btn-back { /*戻る*/
+	/*position: relative;*/
+	padding: 3vw; /*paddingの内側にある、要素の横幅*/
+	/*height: auto;*/ /*paddingの内側にある、要素の高さ*/
+	background: linear-gradient(to bottom, #FFF, #FFC778 30%, #F89174 60%, #748af8); /*要素の背景,グラデーション(下方向,色1~4)*/
+	font-size: 30px; /*文字サイズ*/
+	text-align: center; /*インライン要素,中央揃え*/
+	border-radius: 10px;/*角を丸くする*/
+}
+.btn-register { /*新規登録*/
+	/*position: relative;*/
+	padding: 3vw; /*paddingの内側にある、要素の横幅*/
+	/* height: auto; /*paddingの内側にある、要素の高さ*/
+	background: linear-gradient(to bottom, #FFF, #FFC778 30%, #F89174 60%, #748af8); /*要素の背景,グラデーション(下方向,色1~4)*/
+	font-size: 30px; /*文字サイズ*/
+	text-align: center; /*インライン要素,中央揃え*/
+	border-radius: 10px;/*角を丸くする*/
 
 }
 
-.List{
-	font-size: 50px;
-	font-family: serif;
-	position: relative; top: 700px;
-}
-
-/*タイトルのアイコン画像*/
+/*仮想店員*/
 .character {
-	width: auto;
-/*	position: relative; top: 200px; left: 100px;*/
+	position: absolute;top: 30vh; left: 20vw;/*下から上へ*/
+	width: 20vw; /*paddingの内側にある、要素の横幅*/
+	height: auto; /*paddingの内側にある、要素の高さ*/
+	/*margin-left: 20vw;*/ /*要素の移動,左から右へ*/
 }
 
 /*メッセージの枠組み*/
 .message-window {
+	height: 15vh; /*高さ*/
+	width: 50vw; /*横幅*/
 	font-family: 'pokedrug', sans-serif;
 	font-size: 30px;
 	text-align: center; /*文字中央揃え*/
-	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化する背景*/
+	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化するグラデーション*/
 	border:2px solid rgb(5, 230, 160); /*枠*/
 	border-left: 10px solid rgb(5, 230, 160);
 	border-right: 10px solid  rgb(5, 230, 160);
 	box-shadow:2px gray; /*枠に影*/
 	border-radius: 20px; /*角を丸く*/
-	width: 800px; /*横*/
-	max-width: 800px;
-	margin-bottom: 300px;
-	position: relative; top: 1300px; left: 100px;
+	
+	position: absolute; top: 88vh; left: 3vw;
+	z-index: 10;  /*他の要素より前面に */
+}
+
+/*検索フォーム*/
+.search-form {
+	text-align: right;
+	padding-top: 0;
+	margin-top: -60vh;
+	margin-right: 10vh;
 }
 /*テーブル*/
 .table {
 	margin-left: auto; /*右寄せ*/
+	margin-right: 5vw;
+	margin-top: 2vh;
 	width: fit-content; /*幅自動調整*/
 	border: 1px solid #ccc;
+	
 }
+
 /*表の偶数、奇数のカラー*/
 tr:nth-child(even){
 	background-color: rgb(255, 230, 181);
@@ -91,10 +123,5 @@ tr:nth-child(even){
 tr:nth-child(odd){
 	background-color: rgb(255, 197, 168);
 }
-/*検索フォーム*/
-.search-form {
-	text-align: right;
-	padding-top: 0;
-	margin-top: 0;
-}
+
 

@@ -7,32 +7,34 @@
 <!--	<img src='/image/backGround.png'>-->
 </head>
 <body>
-		<!--サブメニュー-->
-		<div class="submenu">
-			<p><a href="/">戻る</a></p>
-			<p><a href="/shop/registForm">新規登録</a></p>
-		</div>
-		<!--ショップ-->
+		<!--ショップ名-->
+		<div>
 		<img src="/images/shopName.png" alt="ドラッグストアまんまる" class='shopName'>
-		<div class="List">
-		<p>ドラッグストア商品一覧</p>
 		</div>
+		<!--サブメニュー-->
+		<div class="subMenu">
+			<p><a href="/" class="btn-back">戻る</a></p>
+			<p><a href="/shop/registForm" class="btn-register">新規登録</a></p>
+		</div>
+		<!--キャラクター-->
 		<div class="message-window">
 			<p>いらっしゃいませ！　なにを　おさがしですか？</p>
-		</div>	
-		<div class="character">
-			<p><img src="/images/characterAI.png" alt='店員' class='character'></p>
-		
+		</div>
+		<div>
+			<img src="/images/characterAI.png" alt='店員' class='character'>
+		</div>
+			
 		<!--検索フォーム-->
-		<div class="search-form">
+			<div class="search-form">
+			<p>ドラッグストア商品一覧</p>
 			<form th:action="@{/products}" method="get">
 			<input type="text" name="keyword" th:value="${keyword}" placeholder="商品を検索"
 				style="width: 300px; height: 30px; font-size: 16px;">
 			<input type="submit" value="検索"
 				style="width: 100px; height: 34px; font-size: 16px">
 			</form>
-		</div>
-		<div class="table">
+			</div>
+			<div class="table">
 			<table border="1">
 			<thead><!--table head 表のヘッダーをまとめる要素、表の最初に置き、見出し行を含む-->
 				<tr><!--table row 表の行-->
