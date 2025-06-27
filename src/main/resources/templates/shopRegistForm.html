@@ -3,24 +3,26 @@
 
 <head>
 	<title>一覧</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/RegistForm.css}">
 </head>
 
 <body>
-	<p><a href="/products">戻る</a></p>
-
-	<h1>登録フォーム</h1>
-	<form action="/shop/regist" method="post">　<!--POSTメソッドでregistへ送信する-->
-		<label for="barcode">管理番号：</label><br>
-		<input type="number" id="barcode" name="barcode" required><br><br><!--requiredはフォームが空欄の場合、警告して送信を止める-->
-		<label for="name">名前:</label><br>
-		<input type="text" id="name" name="name" required><br><br>
-		<label for="cost_price">仕入れ値:</label><br>
-		<input type="number" id="cost_price" name="costPrice" required><br><br>
-		<label for="sale_price">売値:</label><br>
-		<input type="number" id="sale_price" name="salePrice" required><br><br>
-		<input type="submit" value="登録">
-	</form>
-
+	<p><a href="/products" class="btn-back">戻る</a></p><br>
+	<div class="form">
+		<h1>登録フォーム</h1>
+		<form action="/shop/regist" method="post"><!--POSTメソッドでregistへ送信する-->
+			<label for="barcode">管理番号：</label><br>
+			<input type="number" id="barcode" name="barcode" required><br><br><!--requiredはフォームが空欄の場合、警告して送信を止める-->
+			<label for="name">名前:</label><br>
+			<input type="text" id="name" name="name" required><br><br>
+			<label for="cost_price">仕入れ値:</label><br>
+			<input type="number" id="cost_price" name="costPrice" required><br><br>
+			<label for="sale_price">売値:</label><br>
+			<input type="number" id="sale_price" name="salePrice" required><br><br>
+			<input type="submit" value="登録">
+		</form>
+	</div>
 </body>
 
 </html>

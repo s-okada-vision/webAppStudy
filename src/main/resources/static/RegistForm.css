@@ -1,0 +1,37 @@
+/*メモ
+外枠：margin
+中枠:border
+中枠：padding
+要素：画像や文字
+*/
+
+
+/*ブラウザのビューポート（表示領域）全体の指定、body子要素が高さを継承できる*/
+html, body {
+  height: 100%; /*ページ全体の高さ*/
+  margin: 0; /*ブラウザのデフォルトbodyは余白マージン8pxがあるためリセットして余白をなくす*/
+ /* box-sizing: border-box; padding や border を含めたサイズ計算になるので、ズーム時のズレが起きにくい*/
+}
+
+/*ページの背景*/
+body {
+	position: relative;
+    background-image: url('/images/backGround.png'); /*画像リンク*/
+    background-size: cover; /*100%=画面幅に合わせる、cover=縦横両方フィット*/
+    background-repeat: no-repeat; /*背景の繰り返し表示を防ぐ*/
+	margin: 0; /*デフォルトの余白をなくす*/
+	height: 100%; /*画面の高さに合わせてbody全体を伸ばす*/
+}
+.btn-back { /*戻る*/
+	position: static;
+	padding: 2vw; /*paddingの内側にある、要素の横幅*/
+	/*height: auto;*/ /*paddingの内側にある、要素の高さ*/
+	background: linear-gradient(to bottom, #FFF, #FFC778 30%, #F89174 60%, #748af8); /*要素の背景,グラデーション(下方向,色1~4)*/
+	font-size: 30px; /*文字サイズ*/
+	text-align: center; /*インライン要素,中央揃え*/
+	border-radius: 10px;/*角を丸くする*/
+}
+.form{
+	text-align: center;
+	width: 100%;
+}
