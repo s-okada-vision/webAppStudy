@@ -11,22 +11,24 @@
 	font-family: 'pokedrug'; /*フォント名*/
 	src: url(./fonts/x10y12pxDonguriDuel.ttf) format('truetype'); /*フォントデータのリンク*/
 }
+
 /*ブラウザのビューポート（表示領域）全体の指定、body子要素が高さを継承できる*/
 html, body {
   height: 100%; /*ページ全体の高さ*/
   margin: 0; /*ブラウザのデフォルトbodyは余白マージン8pxがあるためリセットして余白をなくす*/
+ /* box-sizing: border-box; padding や border を含めたサイズ計算になるので、ズーム時のズレが起きにくい*/
 }
 
 /*ページの背景*/
 body {
 	position: relative;
     background-image: url('/images/backGround.png'); /*画像リンク*/
-    background-size: 100%; /*画面の幅に合わせて自動で拡大縮小*/
+    background-size: cover; /*100%=画面幅に合わせる、cover=縦横両方フィット*/
     background-repeat: no-repeat; /*背景の繰り返し表示を防ぐ*/
 	margin: 0; /*デフォルトの余白をなくす*/
 	height: 100%; /*画面の高さに合わせてbody全体を伸ばす*/
-	
 }
+
 /*ショップ名*/
 .shopName {
 	display: block; /*Flexbox＝要素を並べるレイアウト機能を有効化（子要素を揃える）*/
@@ -35,7 +37,7 @@ body {
 	border-radius: 15px;/*角を丸くする*/
 	/*ネタ*/
 	padding:0 !important;
-	animation: bound .3s ease infinite alternate; /*バウンド*/
+	animation: bound .5s ease infinite alternate; /*バウンド*/
 	box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.8); /*影をつける：X軸 Y軸 ぼかし距離 rgba(0,0,0,透明度)*/
 	}
 	@keyframes bound{
@@ -47,15 +49,15 @@ body {
 .subMenu {
 	display: flex; /*Flexbox＝要素を並べるレイアウト機能を有効化（子要素を揃える）*/
 	flex-direction: column;/*並べる方向。row（横）もしくはcolumn（縦）に並べる（子要素）*/
-	gap: 10vh; /*要素同士の間にすき間をつくる*/
+	/*gap: 10vh; 要素同士の間にすき間をつくれる*/
 	/*align-items: right;*//*交差軸の揃え方。デフォルト縦方向（columnで縦に指定されている場合、横方向になる）、中央揃え（子要素）*/
-	margin-left: 5vw; /*要素の移動,左から右へ*/
-	margin-top: 5vh;/*上から下へ*/
-	
+	margin-left: 5rem; /*要素の移動,左から右へ*/
+	margin-top: 10rem;/*上から下へ*/
+	max-width: 15rem;
 }
 .btn-back { /*戻る*/
-	/*position: relative;*/
-	padding: 3vw; /*paddingの内側にある、要素の横幅*/
+	position: static;
+	padding: 2vw; /*paddingの内側にある、要素の横幅*/
 	/*height: auto;*/ /*paddingの内側にある、要素の高さ*/
 	background: linear-gradient(to bottom, #FFF, #FFC778 30%, #F89174 60%, #748af8); /*要素の背景,グラデーション(下方向,色1~4)*/
 	font-size: 30px; /*文字サイズ*/
@@ -63,57 +65,73 @@ body {
 	border-radius: 10px;/*角を丸くする*/
 }
 .btn-register { /*新規登録*/
-	/*position: relative;*/
-	padding: 3vw; /*paddingの内側にある、要素の横幅*/
-	/* height: auto; /*paddingの内側にある、要素の高さ*/
+	position: static;
+	padding: 2vw; /*paddingの内側にある、要素の横幅*/
+	height: auto; /*paddingの内側にある、要素の高さ*/
 	background: linear-gradient(to bottom, #FFF, #FFC778 30%, #F89174 60%, #748af8); /*要素の背景,グラデーション(下方向,色1~4)*/
 	font-size: 30px; /*文字サイズ*/
 	text-align: center; /*インライン要素,中央揃え*/
 	border-radius: 10px;/*角を丸くする*/
-
 }
 
 /*仮想店員*/
 .character {
-	position: absolute;top: 30vh; left: 20vw;/*下から上へ*/
+	position: absolute;top: 40vh; left: 20vw;
 	width: 20vw; /*paddingの内側にある、要素の横幅*/
 	height: auto; /*paddingの内側にある、要素の高さ*/
-	/*margin-left: 20vw;*/ /*要素の移動,左から右へ*/
 }
 
 /*メッセージの枠組み*/
 .message-window {
-	height: 15vh; /*高さ*/
 	width: 50vw; /*横幅*/
+	height: 20vh; /*高さ*/
 	font-family: 'pokedrug', sans-serif;
-	font-size: 30px;
+	font-size: 2rem;
 	text-align: center; /*文字中央揃え*/
 	background: linear-gradient(to bottom, white, rgb(206, 255, 206));/*上から下へ色を変化するグラデーション*/
 	border:2px solid rgb(5, 230, 160); /*枠*/
 	border-left: 10px solid rgb(5, 230, 160);
 	border-right: 10px solid  rgb(5, 230, 160);
-	box-shadow:2px gray; /*枠に影*/
 	border-radius: 20px; /*角を丸く*/
-	
-	position: absolute; top: 88vh; left: 3vw;
+	position: absolute; bottom: -18vh; left: 3vw;
 	z-index: 10;  /*他の要素より前面に */
+}
+
+/*商品一覧ロゴ*/
+.Products {
+	position: absolute; top:-5vh; right:10vw;
+	text-align: left;
+	margin-top: 3vh;
+}
+
+h1 {
+	 background-color: white;
+	 text-align: center;
+	 position: relative;
+	 padding: 1rem 2rem;
+	 border: 4px solid #000;
+}
+
+h1:before {
+	 position: absolute;
+	 top: 4px;
+	 left: 4px;
+	 width: calc(100% - 8px);
+	 height: calc(100% - 8px);
+	 content: '';
+	 border: 2px solid #000;
 }
 
 /*検索フォーム*/
 .search-form {
-	text-align: right;
-	padding-top: 0;
-	margin-top: -60vh;
-	margin-right: 10vh;
+	/*position: absolute; top:10vh;*/
+	margin-bottom: 2vh;
 }
 /*テーブル*/
 .table {
-	margin-left: auto; /*右寄せ*/
-	margin-right: 5vw;
-	margin-top: 2vh;
-	width: fit-content; /*幅自動調整*/
-	border: 1px solid #ccc;
-	
+	width: 100%;
+	table-layout: fixed; /* 各列の幅を均等に分配*/
+	border: 3px solid black;
 }
 
 /*表の偶数、奇数のカラー*/
@@ -123,5 +141,4 @@ tr:nth-child(even){
 tr:nth-child(odd){
 	background-color: rgb(255, 197, 168);
 }
-
-
+}
