@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
 //自作のデータアクセスとデータクラスを使う
 import com.example.demo.dao.UserDao;
 import com.example.demo.data.UserData;
 import com.example.demo.form.UserRegistForm;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
+
 
 //Web画面を返すコントローラー、自動設定有効
 @Controller

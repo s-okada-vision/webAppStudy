@@ -36,3 +36,9 @@ insert into webdb.webdbproducts(barcode,name,cost_price,sale_price) values
   , ('7654321','プレドニン',100.00,300.00)
   , ('789012','B',100.00,100.00)
   , ('87654321','カロナール',300.00,600.00);
+
+insert into webdb.m_usr(`USER_ID`,`USER_PASSWORD`,`INSERT_DATE`,`UPDATE_DATE`) values 
+    ('root','huthinobe',TIMESTAMP '2025-08-15 16:02:56.000',TIMESTAMP '2025-08-15 16:05:41.000');
+
+  
+  

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>ログインシステム</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<p><a href="/login">戻る</a></p>
+	
+	<div class="login-box">
+		<h1>パスワード変更画面</h1>
+		<form action="/login/regist" method="post">　				<!--空欄エラー-->
+			<input type="text" name="ID" placeholder="ユーザーID" required><br>
+			<input type="password" name="password" placeholder="パスワード" required><br><br>
+			<input type="submit" value="変更">
+		</form>
+	</div>
+</body>
+
+</html>
