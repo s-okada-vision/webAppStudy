@@ -1,5 +1,28 @@
 package com.example.demo.dao;
 
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import com.example.demo.data.LoginData;
+
+@Repository
 public class LoginDao {
 
+	private final JdbcTemplate jdbcTemplate;
+
+	public LoginDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	//DBからID、パスワードの一致検索
+	public List<LoginData> findData(String user_Id, String user_Password ) {
+		String sql = "SELECT * FROM M_USR WHERE USER_ID = ? AND USER_PASSWORD = ?";
+		
+		return jdbcTemplate.query(sql, (rs, rowNum) -> {
+			LoginData item = new LoginData();
+			item.setId(rs.getString("USER_ID"));
+			item.setPassword(rs.getString("USER_PASSWORD"));
+			return item;
+		});
+	}
 }

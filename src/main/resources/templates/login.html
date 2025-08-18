@@ -3,18 +3,21 @@
 <head>
 	<title>ログインシステム</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/login.css}">
 </head>
 
 <body>
 	<p><a href="/">戻る</a></p>
-	<p><a hreh="/login/passEditForm">パスワード変更</a></p>
+	<p><a href="/login/LoginPasswordEdit">パスワード変更</a></p>
 	
 	<div class="login-box">
-		<h1>ログイン画面</h1>
+		<h1>ログイン画面</h1><br>
 		
-		<form action="/login/regist" method="post">　				<!--空欄エラー-->
+		<form action="/login" method="post">			<!--空欄エラー-->
+			<br>
 			<input type="text" name="ID" placeholder="ユーザーID" required><br>
-			<input type="password" name="password" placeholder="パスワード" required><br><br>
+			<br>
+			<input type="password" name="PASSWORD" placeholder="パスワード" required><br><br>
 			<input type="submit" value="ログイン">
 		</form>
 	</div>

@@ -1,0 +1,33 @@
+.login-box {
+  text-align: center;
+  font-size: large;
+  width: 100vw;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 入力フィールドのスタイル */
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box textarea {
+  width: 80%;
+  padding: 20px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: rgb(192, 192, 192);
+}
+
+/* 送信ボタンのスタイル（カラー変更） */
+.login-box input[type="submit"] {
+  width: 80%;
+  padding: 20px;
+  font-size: 20px;
+  background-color: rgb(0, 128, 192); /* ボタンの背景色 */
+  color: white;              /* 文字色 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
