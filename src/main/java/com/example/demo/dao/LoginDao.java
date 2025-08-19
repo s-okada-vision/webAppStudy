@@ -19,10 +19,11 @@ public class LoginDao {
 		String sql = "SELECT * FROM M_USR WHERE USER_ID = ? AND USER_PASSWORD = ?";
 		
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
+			//ユーザー情報格納クラス、DBのカラム値をフィールドにセット
 			LoginData item = new LoginData();
 			item.setId(rs.getString("USER_ID"));
 			item.setPassword(rs.getString("USER_PASSWORD"));
 			return item;
-		});
+		},  user_Id, user_Password); //値を返す
 	}
 }

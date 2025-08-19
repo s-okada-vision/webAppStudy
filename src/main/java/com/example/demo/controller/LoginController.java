@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; // htmlへ値を渡す入れ物
+//import org.springframework.ui.Model; // htmlへ値を渡す入れ物
 
 import com.example.demo.dao.LoginDao;
 import com.example.demo.data.LoginData;
@@ -43,22 +43,12 @@ public class LoginController {
 
         ModelAndView modelAndView = new ModelAndView();
         if (!result.isEmpty()) {
-            modelAndView.setViewName("products"); // ログイン成功時の遷移画面
-            modelAndView.addObject("items", result);
+        	modelAndView.setViewName("redirect:/products"); // ログイン成功時の遷移画面
+        	//redirect:/を入れる事で遷移先のコントローラが呼ばれている。
         } else {
             modelAndView.setViewName("login"); // ログイン失敗時はログイン画面に戻す
             modelAndView.addObject("error", "IDまたはパスワードが一致しません。");
         }
         return modelAndView;
-    }	
-
-	//ログイン失敗
-	@GetMapping( "/error" )
-	public ModelAndView LoginError(Model model) {
-		ModelAndView modelAndView = new ModelAndView("login"); //ログイン画面に戻る
-		modelAndView.addObject("error", "ログインに失敗しました。");
-		return modelAndView;
-	}
-
+    }
 }
-
