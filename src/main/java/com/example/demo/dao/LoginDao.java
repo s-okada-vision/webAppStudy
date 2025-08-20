@@ -3,7 +3,9 @@ package com.example.demo.dao;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.example.demo.data.LoginData;
+//import com.example.demo.form.LoginEditForm;
 
 @Repository
 public class LoginDao {
@@ -14,8 +16,8 @@ public class LoginDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	//DBからID、パスワードの一致検索
-	public List<LoginData> findData(String user_Id, String user_Password ) {
+	//ログイン時、DBからID、パスワードの一致検索
+	public List<LoginData> findData(String user_Id, String user_Password) {
 		String sql = "SELECT * FROM M_USR WHERE USER_ID = ? AND USER_PASSWORD = ?";
 		
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
@@ -25,5 +27,22 @@ public class LoginDao {
 			item.setPassword(rs.getString("USER_PASSWORD"));
 			return item;
 		},  user_Id, user_Password); //値を返す
+	}
+	
+	//編集詳細取得
+	public LoginData findId(String user_Id) {
+		String sql = "SELECT * FROM M_USR WHERE USER_ID = ?";
+		return jdbcTemplate.queryForObject(sql,(rs, rowNum) -> {
+			LoginData item = new LoginData();
+			item.setId(rs.getString("USER_ID"));
+			item.setPassword(rs.getString("USER_PASSWORD"));
+			return item;
+		},  user_Id);
+	}
+	
+	//パスワード編集登録
+	public void updatePassword(String userId, String newPassword) {
+	String sql = "UPDATE M_USR SET USER_PASSWORD = ? WHERE USER_ID = ?";
+		jdbcTemplate.update(sql, newPassword, userId);//値を確認してからなおす
 	}
 }
