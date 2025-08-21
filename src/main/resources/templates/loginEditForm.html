@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>ログインシステム</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/login.css}">
+</head>
+
+<body>
+	<p><a href="/products">戻る</a></p>
+	
+	<div class="login-box">
+		<h1>パスワード変更</h1><br>
+		<form th:action="@{/loginEditForm}" method="post"><!--readonly=書き込み禁止-->
+			<label>ログインID</label><br>
+			<input type="text" th:value="${loginId}" readonly><br><br>
+			<label>現在のパスワード</label><br>
+			<input type="password" name="password" placeholder="現在のパスワード" required><br>
+			<label>新しいパスワード</label><br>
+			<input type="password" name="newPassword" placeholder="新しいパスワード" required><br>
+			<input type="submit" value="変更">
+		</form>
+		<!--errorのときは呼び出してエラーメッセージをよびだす-->
+		<p th:text="${error}" style="text-align: center;"></p>
+	</div>
+</body>
+
+</html>

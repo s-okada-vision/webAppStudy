@@ -2,31 +2,31 @@ package com.example.demo.form;
 
 public class LoginEditForm {
 
-	private String User_Id;
-	private String User_Password;// 現在のパスワード
-	private String New_Password; // 新しいパスワード
+	private String userId;
+	private String password;// 現在のパスワード
+	private String newPassword; // 新しいパスワード
 	
-	public String getId() {
-		return User_Id;
+	public String getUserId() {
+		return userId;
 	}
 	
-	public void setId(String user_Id) {
-		this.User_Id = user_Id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	public String getPassword() {
-		return User_Password;
+		return password;
 	}
 	
-	public void setPassword(String user_Password) {
-		this.User_Password = user_Password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
-	public String getNew_Password() {
-		return New_Password;
+	public String getNewPassword() {
+		return newPassword;
 	}
 	
-	public void setNew_Password(String New_Password) {
-		this.New_Password = New_Password;
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 }

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.dao.LoginDao;
 import com.example.demo.data.LoginData;
 import com.example.demo.form.LoginEditForm;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller // Web画面を制御する
@@ -34,12 +33,13 @@ public class LoginController {
 
 	// ログイン判定(RequestParam＝URLから値を受け取る)
 	@PostMapping("/login")
-	public ModelAndView LoginCheck(@RequestParam("ID") String id, @RequestParam("PASSWORD") String password) {
+	public ModelAndView LoginCheck(@RequestParam("ID") String id, @RequestParam("PASSWORD") String password, HttpSession session) {
 
 		List<LoginData> result = loginDao.findData(id, password);
 
 		ModelAndView modelAndView = new ModelAndView();
 		if (!result.isEmpty()) {
+			session.setAttribute("loginUserId", id);
 			modelAndView.setViewName("redirect:/products"); // ログイン成功時の遷移画面
 			// redirect:/を入れる事で遷移先のコントローラが呼ばれている。
 		} else {
@@ -50,35 +50,20 @@ public class LoginController {
 	}
 
 	// パスワード編集画面追加
-	
-	@GetMapping({"/login/LoginPasswordEdit"}) 
-	public ModelAndView Form(HttpSession session) {
-		ModelAndView modelAndView = new ModelAndView("LoginPasswordEdit");
-		modelAndView.addObject("loginEditForm", new LoginEditForm());
-		modelAndView.addObject("step", 1); //現在のパスワード
-		return modelAndView;
-	}
-	
-	@PostMapping("/login/LoginPasswordEdit/verify")
-	public ModelAndView verifyPass(@ModelAttribute LoginEditForm form, HttpSession session) {
-		LoginData user = loginDao.findId(form.getId());
-		ModelAndView modelAndView = new ModelAndView("LoginPasswordEdit");
-		
-		//パスワードが値があり、かつ一致しているとき
-		if(user != null && user.getPassword().equals(form.getPassword())){
-			session.setAttribute("loginUserId", form.getId());
-			form.setPassword("");//現在のパスワードをクリア
-			modelAndView.addObject("step", 2); //ステップ２＝新しいパスワード
-		} else {
-			modelAndView.addObject("error","IDまたはパスワードが間違っています");
-			modelAndView.addObject("step", 1);
+	@GetMapping({"/loginEditForm"})
+	public ModelAndView LoginEditForm(HttpSession session) {
+		String userId = (String) session.getAttribute("loginUserId");
+		//IDに値が無い場合
+		if(userId == null ) {
+			return new ModelAndView("redirect:/login");
 		}
-		modelAndView.addObject("loginEditForm", form);
+		ModelAndView modelAndView = new ModelAndView("loginEditForm");
+		modelAndView.addObject("loginId", userId);
 		return modelAndView;
 	}
 
 	// 更新登録
-	@PostMapping({ "/login/LoginPasswordAEdit/update" })
+	@PostMapping({"/loginEditForm"})
 	public ModelAndView updatePassword(@ModelAttribute LoginEditForm form, HttpSession session) {
 		String userId = (String) session.getAttribute("loginUserId");
 		
@@ -86,7 +71,24 @@ public class LoginController {
 		if(userId == null) {
 			return new ModelAndView("redirect:/login");
 		}
-		loginDao.updatePassword(userId, form.getNew_Password());
+		//現在のパスワードをDBと比較
+		LoginData userData = loginDao.findId(userId);
+		if(!form.getPassword().equals(userData.getPassword())){
+			ModelAndView errorView = new ModelAndView("loginEditForm");
+			errorView.addObject("error", "現在のパスワードが正しくありません");
+			errorView.addObject("loginId", userId);
+			return errorView;
+		}
+		//新しいパスワードの値がないとき、空文字のとき
+		if (form.getNewPassword() == null || form.getNewPassword().isEmpty()) {
+		    ModelAndView errorView = new ModelAndView("loginEditForm");
+		    errorView.addObject("error", "新しいパスワードが未入力です");
+		    errorView.addObject("loginId", userId);
+		    return errorView;
+		}
+
+		//パスワード更新
+		loginDao.updatePassword(userId, form.getNewPassword());
 		session.removeAttribute("loginUserId");
 		return new ModelAndView("redirect:/login");
 	}
