@@ -31,7 +31,7 @@ public class LoginController {
 		return new ModelAndView("login");
 	}
 
-	// ログイン判定(RequestParam＝URLから値を受け取る)
+	// ログイン判定(RequestParam＝フォームから値を受け取る)
 	@PostMapping("/login")
 	public ModelAndView LoginCheck(@RequestParam("ID") String id, @RequestParam("PASSWORD") String password, HttpSession session) {
 

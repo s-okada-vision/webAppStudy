@@ -20,7 +20,7 @@ public class LoginDao {
 	public List<LoginData> findData(String user_Id, String user_Password) {
 		String sql = "SELECT * FROM M_USR WHERE USER_ID = ? AND USER_PASSWORD = ?";
 		
-		return jdbcTemplate.query(sql, (rs, rowNum) -> {
+		return jdbcTemplate.query(sql, (rs, rowNum) -> { //ラムダ式(引数) -> 処理
 			//ユーザー情報格納クラス、DBのカラム値をフィールドにセット
 			LoginData item = new LoginData();
 			item.setId(rs.getString("USER_ID"));
