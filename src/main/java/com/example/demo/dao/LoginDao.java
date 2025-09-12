@@ -45,4 +45,12 @@ public class LoginDao {
 	String sql = "UPDATE M_USR SET USER_PASSWORD = ? WHERE USER_ID = ?";
 		jdbcTemplate.update(sql, newPassword, userId);//値を確認してからなおす
 	}
+	
+	// DB接続確認（ユーザー数を集計し取得）
+	public int dbCheck() {
+	    String sql = "SELECT COUNT(*) FROM M_USR";
+	    return jdbcTemplate.queryForObject(sql, Integer.class); //sqlの引数をintegerで受け取る
+	}
+
+
 }
